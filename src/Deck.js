@@ -14,24 +14,34 @@ class Deck extends React.Component {
             won: '',
             showDealer: '',
             playerTotal: '',
-            dealerTotal: ''
+            dealerTotal: '',
+            whoWin: '',
+            index: 3
         }
     }
 
     render () {
         return (
             <div>
-                <button onClick={this._getDeck}>Start</button>
+                <h1>BLACKJACK</h1>
+                <button onClick={this.state.whoWin === '' ? this._getDeck : this._reset}>Start</button>
+                <br></br>
                     <h2>{this.state.won ? <h2>You won</h2> : null}</h2>
-                    {
-                        this.state.p1 && this.state.p2 ? [<li className="p1">Player 1: <div className="card">{this.state.p1[0].Value} <img className="card-img-top" src={this.state.p1[0].Suit}></img></div> <div className="card">{this.state.p1[1].Value} <img className="card-img-top" src={this.state.p1[1].Suit}></img></div></li>,<br></br>,<h3>Player total: {this.state.playerTotal}</h3>,<br></br>, 
-                        <li className="p2">Dealer: <div className="card">{this.state.p2[0].Value} <img className="card-img-top" src={this.state.p2[0].Suit}></img></div></li>] : null
-                    }
-                    {this.state.showDealer ? <div className="card">{this.state.p2[1].Value} <img className="card-img-top" src={this.state.p2[1].Suit}></img></div> : null}
-                    {this.state.dealerTotal ? <h3>Dealer total: {this.state.dealerTotal}</h3> : null}
+                    {this.state.p1 ? <div className="p1">Player 1: <div className="card">{this.state.p1[0].Value} <img className="card-img-top" src={this.state.p1[0].Suit}></img></div> <div className="card">{this.state.p1[1].Value} <img className="card-img-top" src={this.state.p1[1].Suit}></img></div></div> : null}
+                    {this.state.index > 3 && this.state.p1 ? <div className="card">{this.state.p1[2].Value} <img className="card-img-top" src={this.state.p1[2].Suit}></img></div> : null}
+                    {this.state.index > 4 && this.state.p1 ? <div className="card">{this.state.p1[3].Value} <img className="card-img-top" src={this.state.p1[3].Suit}></img></div> : null}
+                    {this.state.index > 5 && this.state.p1 ? <div className="card">{this.state.p1[4].Value} <img className="card-img-top" src={this.state.p1[4].Suit}></img></div> : null}
+                    <h3>Player total: {this.state.playerTotal}</h3>
+                    <div className="line">
+                    {this.state.p2 ? <div className="p2">Dealer: <div className="card">{this.state.p2[0].Value} <img className="card-img-top" src={this.state.p2[0].Suit}></img></div></div> : null}
+                        {this.state.showDealer ? <div className="card">{this.state.p2[1].Value} <img className="card-img-top" src={this.state.p2[1].Suit}></img></div> : null}
+                    </div>
+                        {this.state.dealerTotal ? <h3>Dealer total: {this.state.dealerTotal}</h3> : null}
                     <br></br>
-                <button onClick={this._nextCard}>Hit</button>
-                <button onClick={this._showDealer}>Stop</button>
+                <button onClick={this._hitCard}>Hit</button>
+                <button onClick={this.state.deck ? this._showDealer : null}>Stop</button>
+                <br></br>
+                {this.state.whoWin ? <h2>{this.state.whoWin}</h2> : null}
             </div>
         )
     }
@@ -58,7 +68,9 @@ class Deck extends React.Component {
             this.setState({
                 deck: deck,
                 won: '',
-                showDealer: ''
+                showDealer: '',
+                whoWin: '',
+                dealerTotal: ''
             }, this._randomCards)
         )
     }
@@ -100,7 +112,9 @@ class Deck extends React.Component {
     _showDealer = () => {
         this.setState({
             showDealer: 1
-        }, this._dealerTotal)
+        }, () => (
+            this._dealerTotal()
+        ))
     }
 
     _playerTotal = () => {
@@ -144,8 +158,42 @@ class Deck extends React.Component {
         return (
             this.setState({
                 dealerTotal: total
-            })
+            }, this._whoWin)
         )
+    }
+
+    _whoWin = () => {
+        if (this.state.playerTotal > 21 || (this.state.playerTotal < 21 && this.state.dealerTotal > this.state.playerTotal)) {
+            this.setState({
+                whoWin: 'Dealer win'
+            })
+        }
+        if (this.state.playerTotal <= 21 && this.state.playerTotal > this.state.dealerTotal || this.state.playerTotal === 21) {
+            this.setState({
+                whoWin: 'Player win'
+            })
+        }
+    }
+
+    _hitCard = () => {
+        this.setState({
+            p1: this.state.p1.concat(this.state.deck[this.state.index]),
+            index: this.state.index + 1
+        }, this._playerTotal)
+    }
+
+    _reset = () => {
+        this.setState({
+            deck: '',
+            p1: '',
+            p2: '',
+            won: '',
+            showDealer: '',
+            playerTotal: '',
+            dealerTotal: '',
+            whoWin: '',
+            index: 3
+        }, this._getDeck)
     }
 }
 

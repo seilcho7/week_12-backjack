@@ -8,6 +8,7 @@ img {
 
 .card {
   width: 100px;
+  margin: auto;
 }
 
 .p1 {
@@ -15,6 +16,10 @@ img {
 }
 
 .p2 {
+  display: inline-flex;
+}
+
+.line {
   display: inline-flex;
 }
 
