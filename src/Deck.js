@@ -34,6 +34,7 @@ class Deck extends React.Component {
                     {this.state.index > 5 && this.state.p1 ? <div className="card"><p className="top">{this.state.p1[4].Value}</p><img className="card-img-top" src={this.state.p1[4].Suit}></img><p className="bot">{this.state.p1[4].Value}</p></div> : null}
                     {this.state.index > 6 && this.state.p1 ? <div className="card"><p className="top">{this.state.p1[5].Value}</p><img className="card-img-top" src={this.state.p1[5].Suit}></img><p className="bot">{this.state.p1[5].Value}</p></div> : null}
                     {this.state.index > 7 && this.state.p1 ? <div className="card"><p className="top">{this.state.p1[6].Value}</p><img className="card-img-top" src={this.state.p1[6].Suit}></img><p className="bot">{this.state.p1[6].Value}</p></div> : null}
+                    {this.state.index > 8 && this.state.p1 ? <div className="card"><p className="top">{this.state.p1[7].Value}</p><img className="card-img-top" src={this.state.p1[7].Suit}></img><p className="bot">{this.state.p1[7].Value}</p></div> : null}
                     </div>
                     {this.state.playerTotal ? <h4>Player total: {this.state.playerTotal}</h4> : null}
                     {this.state.p2 ? <h3>Dealer: </h3> : null}
@@ -186,8 +187,8 @@ class Deck extends React.Component {
         }, this._getDeck)
     }
 
-    _ace = () => {
-        this.state.p1.map((card) => {
+    _ace = async () => {
+        await this.state.p1.map((card) => {
             if (card.Value === "A") {
                 this.setState({
                     playerTotal: this.state.playerTotal - 10
