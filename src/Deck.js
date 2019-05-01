@@ -21,25 +21,27 @@ class Deck extends React.Component {
 
     render () {
         return (
-            <div>
+            <div className="App">
                 <h1>BLACKJACK</h1>
                 <button onClick={this._reset}>Start</button>
                 <br></br>
                     {this.state.won === 1 ? <h2>You win</h2> : this.state.won === 2 ? <h2>You lose</h2> : this.state.won === 3 ? <h2>Tie</h2>: null}
+                    {this.state.p1 ? <h3>Player: </h3> : null}
                     <div className="p1">
-                    {this.state.p1 ? <div className='p1'>Player 1: <div className="card">{this.state.p1[0].Value} <img className="card-img-top" src={this.state.p1[0].Suit}></img></div> <div className="card">{this.state.p1[1].Value} <img className="card-img-top" src={this.state.p1[1].Suit}></img></div></div> : null}
-                    {this.state.index > 3 && this.state.p1 ? <div className="card">{this.state.p1[2].Value} <img className="card-img-top" src={this.state.p1[2].Suit}></img></div> : null}
-                    {this.state.index > 4 && this.state.p1 ? <div className="card">{this.state.p1[3].Value} <img className="card-img-top" src={this.state.p1[3].Suit}></img></div> : null}
-                    {this.state.index > 5 && this.state.p1 ? <div className="card">{this.state.p1[4].Value} <img className="card-img-top" src={this.state.p1[4].Suit}></img></div> : null}
-                    {this.state.index > 6 && this.state.p1 ? <div className="card">{this.state.p1[5].Value} <img className="card-img-top" src={this.state.p1[5].Suit}></img></div> : null}
-                    {this.state.index > 7 && this.state.p1 ? <div className="card">{this.state.p1[6].Value} <img className="card-img-top" src={this.state.p1[6].Suit}></img></div> : null}
+                    {this.state.p1 ? <div className='p1'><div className="card"><p className="top">{this.state.p1[0].Value}</p><img className="card-img-top" src={this.state.p1[0].Suit}></img><p className="bot">{this.state.p1[0].Value}</p></div> <div className="card"><p className="top">{this.state.p1[1].Value}</p><img className="card-img-top" src={this.state.p1[1].Suit}></img><p className="bot">{this.state.p1[1].Value}</p></div></div> : null}
+                    {this.state.index > 3 && this.state.p1 ? <div className="card"><p className="top">{this.state.p1[2].Value}</p><img className="card-img-top" src={this.state.p1[2].Suit}></img><p className="bot">{this.state.p1[2].Value}</p></div> : null}
+                    {this.state.index > 4 && this.state.p1 ? <div className="card"><p className="top">{this.state.p1[3].Value}</p><img className="card-img-top" src={this.state.p1[3].Suit}></img><p className="bot">{this.state.p1[3].Value}</p></div> : null}
+                    {this.state.index > 5 && this.state.p1 ? <div className="card"><p className="top">{this.state.p1[4].Value}</p><img className="card-img-top" src={this.state.p1[4].Suit}></img><p className="bot">{this.state.p1[4].Value}</p></div> : null}
+                    {this.state.index > 6 && this.state.p1 ? <div className="card"><p className="top">{this.state.p1[5].Value}</p><img className="card-img-top" src={this.state.p1[5].Suit}></img><p className="bot">{this.state.p1[5].Value}</p></div> : null}
+                    {this.state.index > 7 && this.state.p1 ? <div className="card"><p className="top">{this.state.p1[6].Value}</p><img className="card-img-top" src={this.state.p1[6].Suit}></img><p className="bot">{this.state.p1[6].Value}</p></div> : null}
                     </div>
-                    <h3>Player total: {this.state.playerTotal}</h3>
+                    <h4>Player total: {this.state.playerTotal}</h4>
+                    {this.state.p2 ? <h3>Dealer: </h3> : null}
                     <div className="line">
-                    {this.state.p2 ? <div className="p2">Dealer: <div className="card">{this.state.p2[0].Value} <img className="card-img-top" src={this.state.p2[0].Suit}></img></div></div> : null}
-                        {this.state.showDealer ? <div className="card">{this.state.p2[1].Value} <img className="card-img-top" src={this.state.p2[1].Suit}></img></div> : null}
+                    {this.state.p2 ? <div className="p2"><div className="card"><p className="top">{this.state.p2[0].Value}</p><img className="card-img-top" src={this.state.p2[0].Suit}></img><p className="bot">{this.state.p2[0].Value}</p></div></div> : null}
+                        {this.state.showDealer ? <div className="card"><p className="top">{this.state.p2[1].Value}</p><img className="card-img-top" src={this.state.p2[1].Suit}></img><p className="bot">{this.state.p2[1].Value}</p></div> : null}
                     </div>
-                        {this.state.dealerTotal ? <h3>Dealer total: {this.state.dealerTotal}</h3> : null}
+                        {this.state.dealerTotal ? <h4>Dealer total: {this.state.dealerTotal}</h4> : null}
                     <br></br>
                 <button onClick={this._hitCard}>Hit</button>
                 <button onClick={this.state.deck ? this._showDealer : null}>Stop</button>
