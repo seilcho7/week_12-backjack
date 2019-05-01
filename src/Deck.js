@@ -35,7 +35,7 @@ class Deck extends React.Component {
                     {this.state.index > 6 && this.state.p1 ? <div className="card"><p className="top">{this.state.p1[5].Value}</p><img className="card-img-top" src={this.state.p1[5].Suit}></img><p className="bot">{this.state.p1[5].Value}</p></div> : null}
                     {this.state.index > 7 && this.state.p1 ? <div className="card"><p className="top">{this.state.p1[6].Value}</p><img className="card-img-top" src={this.state.p1[6].Suit}></img><p className="bot">{this.state.p1[6].Value}</p></div> : null}
                     </div>
-                    <h4>Player total: {this.state.playerTotal}</h4>
+                    {this.state.playerTotal ? <h4>Player total: {this.state.playerTotal}</h4> : null}
                     {this.state.p2 ? <h3>Dealer: </h3> : null}
                     <div className="line">
                     {this.state.p2 ? <div className="p2"><div className="card"><p className="top">{this.state.p2[0].Value}</p><img className="card-img-top" src={this.state.p2[0].Suit}></img><p className="bot">{this.state.p2[0].Value}</p></div></div> : null}
