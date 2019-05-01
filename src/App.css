@@ -11,8 +11,9 @@ img {
 .card {
   width: 100px;
   height: 180px;
-  margin: auto;
+  margin: 6px;
   justify-content: space-between;
+  padding: 10px;
 }
 
 .p1 {
