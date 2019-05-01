@@ -1,16 +1,16 @@
 .App {
   text-align: center;
   background-color: black;
-  height: 1000px;
+  height: 800px;
 }
 
 img {
-  width: 50px;
+  width: 30px;
 }
 
 .card {
   width: 100px;
-  height: 180px;
+  height: 160px;
   margin: 6px;
   justify-content: space-between;
   padding: 10px;
@@ -61,7 +61,7 @@ h4 {
 }
 
 button {
-  margin: 10px;
+  margin: 8px;
 }
 
 

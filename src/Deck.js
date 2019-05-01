@@ -44,7 +44,7 @@ class Deck extends React.Component {
                     </div>
                         {this.state.dealerTotal ? <h4>Dealer total: {this.state.dealerTotal}</h4> : null}
                     <br></br>
-                {this.state.p1 ? <button onClick={this._hitCard}>Hit</button> : null}
+                {this.state.p1 && !this.state.won ? <button onClick={this._hitCard}>Hit</button> : null}
                 {this.state.p1 ? <button onClick={this.state.deck ? this._showDealer : null}>Stop</button> : null}
             </div>
         )
